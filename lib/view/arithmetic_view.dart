@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ArithmeticView extends StatelessWidget {
+class ArithmeticView extends StatefulWidget {
   const ArithmeticView({super.key});
 
+  @override
+  State<ArithmeticView> createState() => _ArithmeticViewState();
+}
+
+class _ArithmeticViewState extends State<ArithmeticView> {
+  int first = 0;
+  int second = 0;
+  int result = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,9 +19,12 @@ class ArithmeticView extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
-            const TextField(
+            TextField(
+              onChanged: (value) {
+                first = int.parse(value);
+              },
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter First No',
               ),
@@ -21,9 +32,12 @@ class ArithmeticView extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const TextField(
+            TextField(
+              onChanged: (value) {
+                second = int.parse(value);
+              },
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Enter Second No',
               ),
@@ -31,14 +45,23 @@ class ArithmeticView extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const Text('Result : 0'),
+            Text(
+              'Result : $result',
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+            ),
             const SizedBox(
               height: 8,
             ),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    result = first + second;
+                  });
+                },
                 child: const Text('Addition'),
               ),
             ),
@@ -48,7 +71,13 @@ class ArithmeticView extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // State lai change gara
+                  // in short build method ma feri hau
+                  setState(() {
+                    result = first - second;
+                  });
+                },
                 child: const Text('Subtraction'),
               ),
             ),
