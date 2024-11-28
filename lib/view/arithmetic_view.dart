@@ -16,6 +16,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Arithemtic'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -23,7 +24,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
           children: [
             TextField(
               onChanged: (value) {
-                first = int.parse(value);
+                first = int.tryParse(value) ?? 0;
               },
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
