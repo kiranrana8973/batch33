@@ -1,5 +1,6 @@
 import 'package:batch33/view/arithmetic_view.dart';
 import 'package:batch33/view/first_view.dart';
+import 'package:batch33/view/rich_text_view.dart';
 import 'package:batch33/view/si_view.dart';
 import 'package:flutter/material.dart';
 
@@ -82,6 +83,29 @@ class DashboardView extends StatelessWidget {
                   ),
                   Text(
                     'First View',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.green[100],
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const RichTextView();
+                }));
+              },
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.calculate,
+                    size: 30,
+                  ),
+                  Text(
+                    'Rich Text View',
                     style: TextStyle(fontSize: 20),
                   ),
                 ],

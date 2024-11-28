@@ -36,7 +36,11 @@ class ArithmeticViewState extends State<ArithmeticView> {
                 },
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                  ),
                   labelText: 'Enter First No',
                 ),
                 validator: (value) {
