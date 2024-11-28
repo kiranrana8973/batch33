@@ -4,96 +4,135 @@ class ArithmeticView extends StatefulWidget {
   const ArithmeticView({super.key});
 
   @override
-  State<ArithmeticView> createState() => _ArithmeticViewState();
+  ArithmeticViewState createState() => ArithmeticViewState();
 }
 
-class _ArithmeticViewState extends State<ArithmeticView> {
-  int first = 0;
-  int second = 0;
-  int result = 0;
+class ArithmeticViewState extends State<ArithmeticView> {
+  int _firstNumber = 0;
+  int _secondNumber = 0;
+  int _result = 0;
+
+// global key for form state
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            TextField(
-              onChanged: (value) {
-                first = int.parse(value);
-              },
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter First No',
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextField(
-              onChanged: (value) {
-                second = int.parse(value);
-              },
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter Second No',
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Result : $result',
-              style: const TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    result = first + second;
-                  });
+      backgroundColor: Colors.yellow[100],
+      appBar: AppBar(
+        title: const Text('Arithmetic Operations'),
+        centerTitle: true,
+        backgroundColor: Colors.red,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                onChanged: (value) {
+                  _firstNumber = int.tryParse(value) ?? 0;
                 },
-                child: const Text('Addition'),
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  // State lai change gara
-                  // in short build method ma feri hau
-                  setState(() {
-                    result = first - second;
-                  });
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter First No',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Enter first no';
+                  }
+                  return null;
                 },
-                child: const Text('Subtraction'),
               ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Multiplication'),
+              const SizedBox(
+                height: 8,
               ),
-            ),
-          ],
+              TextFormField(
+                onChanged: (value) {
+                  _secondNumber = int.tryParse(value) ?? 0;
+                },
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter Second No',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Enter second no';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Result : $_result',
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        _result = _firstNumber + _secondNumber;
+                      });
+                    }
+                  },
+                  child: const Text('Addition'),
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _result = _firstNumber - _secondNumber;
+                    });
+                  },
+                  child: const Text('Subtraction'),
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlueAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _result = _firstNumber * _secondNumber;
+                    });
+                  },
+                  child: const Text('Multiplication'),
+                ),
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
