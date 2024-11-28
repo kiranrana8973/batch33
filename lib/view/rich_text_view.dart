@@ -23,14 +23,14 @@ class RichTextView extends StatelessWidget {
           TextSpan(
             text: 'ello',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 30,
               fontWeight: FontWeight.normal,
             ),
           ),
           TextSpan(
             text: ' Bold',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 30,
               fontWeight: FontWeight.bold,
               color: Colors.red,
             ),
@@ -38,7 +38,7 @@ class RichTextView extends StatelessWidget {
           TextSpan(
             text: ' world',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 30,
               fontWeight: FontWeight.normal,
             ),
           ),
