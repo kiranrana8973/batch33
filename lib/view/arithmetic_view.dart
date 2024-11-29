@@ -8,12 +8,17 @@ class ArithmeticView extends StatefulWidget {
 }
 
 class _ArithmeticViewState extends State<ArithmeticView> {
-  int first = 0;
-  int second = 0;
+  // int first = 0;
+  // int second = 0;
+
+  // TextEditingController
+  final firstController = TextEditingController(text: '2');
+  final secondController = TextEditingController(text: '3');
   int result = 0;
 
   // Global key for form state
   final myKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +34,11 @@ class _ArithmeticViewState extends State<ArithmeticView> {
           child: Column(
             children: [
               TextFormField(
-                onChanged: (value) {
-                  first = int.tryParse(value) ?? 0;
-                },
+                // onChanged: (value) {
+                //   // value lai int ma convert garera first ma store garako
+                //   first = int.tryParse(value) ?? 0;
+                // },
+                controller: firstController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Enter first number',
@@ -47,9 +54,10 @@ class _ArithmeticViewState extends State<ArithmeticView> {
               // Invisible box
               const SizedBox(height: 10),
               TextFormField(
-                onChanged: (value) {
-                  second = int.tryParse(value) ?? 0;
-                },
+                // onChanged: (value) {
+                //   second = int.tryParse(value) ?? 0;
+                // },
+                controller: secondController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Enter second number',
@@ -76,7 +84,8 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                     // Page lai refresh garako
                     if (myKey.currentState!.validate()) {
                       setState(() {
-                        result = first + second;
+                        result = int.parse(firstController.text) +
+                            int.parse(secondController.text);
                       });
                     }
                   },
@@ -91,7 +100,8 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   onPressed: () {
                     if (myKey.currentState!.validate()) {
                       setState(() {
-                        result = first - second;
+                        result = int.parse(firstController.text) -
+                            int.parse(secondController.text);
                       });
                     }
                   },
