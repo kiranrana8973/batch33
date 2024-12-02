@@ -30,9 +30,6 @@ class _ArithmeticViewState extends State<ArithmeticView> {
           child: Column(
             children: [
               TextFormField(
-                // onChanged: (value) {
-                //   first = int.tryParse(value) ?? 0;
-                // },
                 controller: firstController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
