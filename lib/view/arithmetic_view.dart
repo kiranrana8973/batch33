@@ -8,6 +8,7 @@ class ArithmeticView extends StatefulWidget {
 }
 
 class _ArithmeticViewState extends State<ArithmeticView> {
+<<<<<<< HEAD
   // int first = 0;
   // int second = 0;
 
@@ -19,10 +20,21 @@ class _ArithmeticViewState extends State<ArithmeticView> {
   // Global key for form state
   final myKey = GlobalKey<FormState>();
 
+=======
+  // Global key
+  final _formKey = GlobalKey<FormState>();
+
+  final firstController = TextEditingController(text: '45');
+  final secondController = TextEditingController();
+
+  int result = 0;
+
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
         title: const Text('Arithmetic View'),
         centerTitle: true,
         elevation: 0,
@@ -43,6 +55,23 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 decoration: const InputDecoration(
                   labelText: 'Enter first number',
                   border: OutlineInputBorder(),
+=======
+        title: const Text('Arithemtic'),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: firstController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter First No',
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -51,8 +80,14 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   return null;
                 },
               ),
+<<<<<<< HEAD
               // Invisible box
               const SizedBox(height: 10),
+=======
+              const SizedBox(
+                height: 8,
+              ),
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
               TextFormField(
                 // onChanged: (value) {
                 //   second = int.tryParse(value) ?? 0;
@@ -60,8 +95,13 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 controller: secondController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
+<<<<<<< HEAD
                   labelText: 'Enter second number',
                   border: OutlineInputBorder(),
+=======
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter Second No',
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -70,6 +110,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   return null;
                 },
               ),
+<<<<<<< HEAD
               const SizedBox(height: 10),
 
               Text(
@@ -77,12 +118,28 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 style: const TextStyle(fontSize: 30),
               ),
               const SizedBox(height: 10),
+=======
+              const SizedBox(
+                height: 8,
+              ),
+              Text('Result : $result',
+                  style: const TextStyle(
+                    fontSize: 20,
+                  )),
+              const SizedBox(
+                height: 8,
+              ),
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+<<<<<<< HEAD
                     // Page lai refresh garako
                     if (myKey.currentState!.validate()) {
+=======
+                    if (_formKey.currentState!.validate()) {
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
                       setState(() {
                         result = int.parse(firstController.text) +
                             int.parse(secondController.text);
@@ -92,12 +149,19 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   child: const Text('Addition'),
                 ),
               ),
+<<<<<<< HEAD
               const SizedBox(height: 10),
 
+=======
+              const SizedBox(
+                height: 8,
+              ),
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+<<<<<<< HEAD
                     if (myKey.currentState!.validate()) {
                       setState(() {
                         result = int.parse(firstController.text) -
@@ -108,6 +172,15 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   child: const Text('Subtraction'),
                 ),
               )
+=======
+                    setState(() {
+                      //result = first - second;
+                    });
+                  },
+                  child: const Text('Subtraction'),
+                ),
+              ),
+>>>>>>> 0c58555b091b7d0c34f12edf32b86e792c62a880
             ],
           ),
         ),
