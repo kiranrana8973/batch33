@@ -1,4 +1,4 @@
-import 'package:batch33/view/flexible_expanded_view.dart';
+import 'package:batch33/view/snackbar_view.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,7 +8,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Batch 33',
-      home: FlexibleExpandedView(),
+      home: SnackbarView(),
     );
   }
 }
